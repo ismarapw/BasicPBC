@@ -186,7 +186,10 @@ class ModelInference:
         self.model.eval()  # Set the model to evaluation mode
 
     def __del__(self):
-        self._recover_seed()
+        try:
+            self._recover_seed()
+        except Exception:
+            pass
 
     def _set_seed(self, seed):
         self.py_rng_state0 = random.getstate()
